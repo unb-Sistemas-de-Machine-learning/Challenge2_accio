@@ -1,0 +1,71 @@
+# ============================================================
+# .gitignore: o que o Git NÃO deve rastrear
+# Regra de leitura: cada linha é um padrão. "#" é comentário,
+# "/" no fim indica pasta, "*" casa qualquer texto, "!" abre exceção.
+# ============================================================
+
+# --- 1. Segredos (NUNCA no Git: chaves de API, credenciais) ---
+# Segredos ficam em variáveis de ambiente e GitHub Secrets.
+# Mantemos o .env.example (sem valores reais) como modelo.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# --- 2. Dados sensíveis e pesados (ficam fora do Git, versionados em outro lugar) ---
+# Notas fiscais reais (imagens e rótulos) NUNCA vão para o Git.
+notas_reais/
+dados_reais/
+# Dataset sintético e dataset de receitas (RecipeNLG)
+data/
+datasets/
+# Pesos e checkpoints do OCR (versionados fora do Git, ver issue S2-02)
+weights/
+checkpoints/
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.onnx
+
+# --- 3. Python (API, agentes, OCR, RAG, Airflow) ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+*.egg-info/
+.coverage
+htmlcov/
+
+# --- 4. Node / Expo (app) ---
+node_modules/
+.expo/
+.expo-shared/
+dist/
+web-build/
+npm-debug.*
+yarn-error.log
+
+# --- 5. Docker e Airflow (arquivos gerados em execução) ---
+# Volumes locais do Postgres e logs do Airflow
+pgdata/
+postgres-data/
+airflow/logs/
+src/airflow/logs/
+airflow-webserver.pid
+
+# --- 6. Sistema operacional e editores ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# --- 7. Claude Code (config local de cada pessoa) ---
+.claude/
+CLAUDE.md
